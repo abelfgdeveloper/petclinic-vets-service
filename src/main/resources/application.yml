@@ -1,0 +1,25 @@
+server:
+  port: 8101
+
+
+spring:
+  application:
+    name: petclinic-vets-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/petclinic_vets
+    username: postgres
+    password: password
+
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: update
+
+  flyway:
+    enabled: false
+
+logging:
+  level:
+    root: WARN
+    es.abelfgdeveloper: INFO
