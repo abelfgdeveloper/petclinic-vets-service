@@ -1,7 +1,7 @@
 package es.abelfgdeveloper.petclinic.specialty.domain.model;
 
-import es.abelfgdeveloper.petclinic.specialty.adapter.in.rest.create.CreateSpecialtyRequestResource;
-import es.abelfgdeveloper.petclinic.specialty.adapter.in.rest.update.UpdateSpecialtyRequestResource;
+import es.abelfgdeveloper.petclinic.specialty.adapter.in.rest.v1.create.CreateSpecialtyRequestResource;
+import es.abelfgdeveloper.petclinic.specialty.adapter.in.rest.v1.update.UpdateSpecialtyRequestResource;
 import es.abelfgdeveloper.petclinic.specialty.adapter.out.persistence.SpecialtyJpaEntity;
 import java.util.UUID;
 import lombok.AccessLevel;

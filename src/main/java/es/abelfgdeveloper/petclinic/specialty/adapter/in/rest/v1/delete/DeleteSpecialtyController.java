@@ -1,4 +1,4 @@
-package es.abelfgdeveloper.petclinic.specialty.adapter.in.rest.delete;
+package es.abelfgdeveloper.petclinic.specialty.adapter.in.rest.v1.delete;
 
 import es.abelfgdeveloper.petclinic.specialty.application.port.in.delete.DeleteSpecialtyUseCase;
 import lombok.RequiredArgsConstructor;

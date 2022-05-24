@@ -1,4 +1,4 @@
-package es.abelfgdeveloper.petclinic.specialty.adapter.in.rest.find;
+package es.abelfgdeveloper.petclinic.specialty.adapter.in.rest.v1.find;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

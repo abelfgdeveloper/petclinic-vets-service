@@ -1,4 +1,4 @@
-package es.abelfgdeveloper.petclinic.specialty.adapter.in.rest.create;
+package es.abelfgdeveloper.petclinic.specialty.adapter.in.rest.v1.create;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import es.abelfgdeveloper.petclinic.specialty.adapter.out.persistence.SpringDataSpecialtyRepository;

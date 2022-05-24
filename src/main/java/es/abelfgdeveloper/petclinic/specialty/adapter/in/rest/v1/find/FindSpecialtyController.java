@@ -1,4 +1,4 @@
-package es.abelfgdeveloper.petclinic.specialty.adapter.in.rest.find;
+package es.abelfgdeveloper.petclinic.specialty.adapter.in.rest.v1.find;
 
 import es.abelfgdeveloper.petclinic.specialty.application.port.in.find.FindSpecialtyUseCase;
 import es.abelfgdeveloper.petclinic.specialty.domain.model.Specialty;

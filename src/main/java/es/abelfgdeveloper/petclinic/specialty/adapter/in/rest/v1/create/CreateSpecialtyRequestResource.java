@@ -1,4 +1,4 @@
-package es.abelfgdeveloper.petclinic.specialty.adapter.in.rest.update;
+package es.abelfgdeveloper.petclinic.specialty.adapter.in.rest.v1.create;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,7 +15,7 @@ import lombok.ToString;
 @Setter
 @EqualsAndHashCode
 @ToString
-public class UpdateSpecialtyRequestResource {
+public class CreateSpecialtyRequestResource {
 
   private String name;
 }

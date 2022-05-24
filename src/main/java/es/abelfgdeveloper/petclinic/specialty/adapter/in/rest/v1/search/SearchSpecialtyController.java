@@ -1,4 +1,4 @@
-package es.abelfgdeveloper.petclinic.specialty.adapter.in.rest.search;
+package es.abelfgdeveloper.petclinic.specialty.adapter.in.rest.v1.search;
 
 import es.abelfgdeveloper.core.pagination.adapter.in.rest.PaginationMapper;
 import es.abelfgdeveloper.core.pagination.domain.PaginationIn;

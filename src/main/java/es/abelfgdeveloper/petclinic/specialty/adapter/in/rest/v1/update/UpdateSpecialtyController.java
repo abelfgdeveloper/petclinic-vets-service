@@ -1,4 +1,4 @@
-package es.abelfgdeveloper.petclinic.specialty.adapter.in.rest.update;
+package es.abelfgdeveloper.petclinic.specialty.adapter.in.rest.v1.update;
 
 import es.abelfgdeveloper.petclinic.specialty.application.port.in.update.UpdateSpecialtyCommand;
 import es.abelfgdeveloper.petclinic.specialty.application.port.in.update.UpdateSpecialtyUseCase;

@@ -1,5 +1,6 @@
-package es.abelfgdeveloper.petclinic.specialty.adapter.in.rest.delete;
+package es.abelfgdeveloper.petclinic.specialty.adapter.in.rest.v1.find;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import es.abelfgdeveloper.petclinic.specialty.adapter.out.persistence.SpecialtyJpaEntity;
 import es.abelfgdeveloper.petclinic.specialty.adapter.out.persistence.SpringDataSpecialtyRepository;
 import es.abelfgdeveloper.petclinic.specialty.domain.model.SpecialtyMother;
@@ -18,13 +19,14 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 @ActiveProfiles("test")
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-class DeleteSpecialtyControllerTest {
+class FindSpecialtyControllerTest {
 
   @Autowired private MockMvc mockMvc;
+  @Autowired private ObjectMapper objectMapper;
   @Autowired private SpringDataSpecialtyRepository springDataSpecialtyRepository;
 
   @Test
-  void test_delete() throws Exception {
+  void test_find() throws Exception {
     // given
     springDataSpecialtyRepository.deleteAll();
     String endpoint = "/v1/specialties/{specialtyId}";
@@ -34,12 +36,17 @@ class DeleteSpecialtyControllerTest {
     // when
     MockHttpServletResponse httpResponse =
         mockMvc
-            .perform(MockMvcRequestBuilders.delete(endpoint, specialty.getId()))
+            .perform(MockMvcRequestBuilders.get(endpoint, specialty.getId()))
             .andReturn()
             .getResponse();
 
+    FindSpecialtyResponseResource response =
+        objectMapper.readValue(
+            httpResponse.getContentAsString(), FindSpecialtyResponseResource.class);
+
     // then
-    Assertions.assertEquals(HttpStatus.NO_CONTENT.value(), httpResponse.getStatus());
-    Assertions.assertTrue(springDataSpecialtyRepository.findById(specialty.getId()).isEmpty());
+    Assertions.assertEquals(HttpStatus.OK.value(), httpResponse.getStatus());
+    Assertions.assertEquals(specialty.getId(), response.getId());
+    Assertions.assertEquals(specialty.getName(), response.getName());
   }
 }

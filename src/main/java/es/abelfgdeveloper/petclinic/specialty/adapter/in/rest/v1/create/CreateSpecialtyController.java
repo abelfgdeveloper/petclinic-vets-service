@@ -1,4 +1,4 @@
-package es.abelfgdeveloper.petclinic.specialty.adapter.in.rest.create;
+package es.abelfgdeveloper.petclinic.specialty.adapter.in.rest.v1.create;
 
 import es.abelfgdeveloper.petclinic.specialty.application.port.in.create.CreateSpecialtyCommand;
 import es.abelfgdeveloper.petclinic.specialty.application.port.in.create.CreateSpecialtyUseCase;

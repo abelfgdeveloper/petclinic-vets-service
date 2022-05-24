@@ -1,4 +1,4 @@
-package es.abelfgdeveloper.petclinic.specialty.adapter.in.rest.search;
+package es.abelfgdeveloper.petclinic.specialty.adapter.in.rest.v1.search;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import es.abelfgdeveloper.petclinic.specialty.adapter.out.persistence.SpecialtyJpaEntity;
