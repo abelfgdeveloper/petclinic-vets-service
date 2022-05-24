@@ -1,7 +1,7 @@
 package es.abelfgdeveloper.petclinic.specialty.adapter.in.rest.v1.find;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import es.abelfgdeveloper.petclinic.specialty.adapter.out.persistence.SpecialtyJpaEntity;
+import es.abelfgdeveloper.petclinic.specialty.adapter.out.persistence.SpecialtyEntity;
 import es.abelfgdeveloper.petclinic.specialty.adapter.out.persistence.SpringDataSpecialtyRepository;
 import es.abelfgdeveloper.petclinic.specialty.domain.model.SpecialtyMother;
 import org.junit.jupiter.api.Assertions;
@@ -30,7 +30,7 @@ class FindSpecialtyControllerTest {
     // given
     springDataSpecialtyRepository.deleteAll();
     String endpoint = "/v1/specialties/{specialtyId}";
-    SpecialtyJpaEntity specialty = SpecialtyMother.specialtyJpaEntity();
+    SpecialtyEntity specialty = SpecialtyMother.specialtyEntity();
     springDataSpecialtyRepository.save(specialty);
 
     // when

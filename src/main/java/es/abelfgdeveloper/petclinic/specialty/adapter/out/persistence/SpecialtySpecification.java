@@ -6,10 +6,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class SpecialtySpecification {
 
-  public Specification<SpecialtyJpaEntity> nameLike(String query) {
+  public Specification<SpecialtyEntity> nameLike(String query) {
     return (root, criteriaQuery, criteriaBuilder) ->
         criteriaBuilder.like(
-            criteriaBuilder.upper(root.get(SpecialtyJpaEntity_.name)),
+            criteriaBuilder.upper(root.get(SpecialtyEntity_.name)),
             "%" + query.toUpperCase() + "%");
   }
 }

@@ -27,14 +27,14 @@ public class SpecialtyPersistenceAdapter implements SpecialtyRepository {
 
   @Override
   public Specialty create(Specialty specialty) {
-    SpecialtyJpaEntity specialtyToSave =
-        SpecialtyJpaEntity.builder().id(specialty.getId()).name(specialty.getName()).build();
+    SpecialtyEntity specialtyToSave =
+        SpecialtyEntity.builder().id(specialty.getId()).name(specialty.getName()).build();
     return specialtyMapper.map(specialtyRepository.save(specialtyToSave));
   }
 
   @Override
   public Specialty update(Specialty specialty) {
-    SpecialtyJpaEntity specialtySaved =
+    SpecialtyEntity specialtySaved =
         specialtyRepository
             .findById(specialty.getId())
             .orElseThrow(SpecialtyNotFoundException::new);
@@ -60,8 +60,8 @@ public class SpecialtyPersistenceAdapter implements SpecialtyRepository {
   @Override
   public SpecialtyPagination search(PaginationIn pagination, SpecialtyCriteria criteria) {
     PageRequest pageRequest = paginationMapper.map(pagination);
-    Page<SpecialtyJpaEntity> pageResult = null;
-    Optional<Specification<SpecialtyJpaEntity>> specification = buildSpecification(criteria);
+    Page<SpecialtyEntity> pageResult = null;
+    Optional<Specification<SpecialtyEntity>> specification = buildSpecification(criteria);
     if (specification.isPresent()) {
       pageResult = specialtyRepository.findAll(specification.get(), pageRequest);
     } else {
@@ -69,7 +69,7 @@ public class SpecialtyPersistenceAdapter implements SpecialtyRepository {
     }
 
     List<Specialty> specialties = new ArrayList<>();
-    for (SpecialtyJpaEntity specialtyEntity : pageResult.getContent()) {
+    for (SpecialtyEntity specialtyEntity : pageResult.getContent()) {
       specialties.add(specialtyMapper.map(specialtyEntity));
     }
 
@@ -79,9 +79,8 @@ public class SpecialtyPersistenceAdapter implements SpecialtyRepository {
         .build();
   }
 
-  private Optional<Specification<SpecialtyJpaEntity>> buildSpecification(
-      SpecialtyCriteria criteria) {
-    Specification<SpecialtyJpaEntity> specification = null;
+  private Optional<Specification<SpecialtyEntity>> buildSpecification(SpecialtyCriteria criteria) {
+    Specification<SpecialtyEntity> specification = null;
     if (criteria.getName() != null) {
       specification = specialtySpecification.nameLike(criteria.getName());
     }

@@ -5,8 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 public interface SpringDataSpecialtyRepository
-    extends JpaRepository<SpecialtyJpaEntity, String>,
-        JpaSpecificationExecutor<SpecialtyJpaEntity> {
+    extends JpaRepository<SpecialtyEntity, String>, JpaSpecificationExecutor<SpecialtyEntity> {
 
-  Optional<SpecialtyJpaEntity> findByName(String name);
+  Optional<SpecialtyEntity> findByName(String name);
 }

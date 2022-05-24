@@ -1,6 +1,6 @@
 package es.abelfgdeveloper.petclinic.vet.adapter.in.rest.v1.add_specialty;
 
-import es.abelfgdeveloper.petclinic.specialty.adapter.out.persistence.SpecialtyJpaEntity;
+import es.abelfgdeveloper.petclinic.specialty.adapter.out.persistence.SpecialtyEntity;
 import es.abelfgdeveloper.petclinic.specialty.adapter.out.persistence.SpringDataSpecialtyRepository;
 import es.abelfgdeveloper.petclinic.specialty.domain.model.SpecialtyMother;
 import es.abelfgdeveloper.petclinic.vet.adapter.out.persistence.SpringDataVetRepository;
@@ -36,7 +36,7 @@ class AddSpecialtyToVetControllerTest {
     String endpoint = "/v1/vets/{vetId}/specialties/{specialtyId}";
 
     VetEntity vet = VetMother.vetEntity();
-    SpecialtyJpaEntity specialty = SpecialtyMother.specialtyJpaEntity();
+    SpecialtyEntity specialty = SpecialtyMother.specialtyEntity();
     springDataSpecialtyRepository.save(specialty);
     springDataVetRepository.save(vet);
 

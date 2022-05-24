@@ -21,7 +21,7 @@ import lombok.ToString;
 @ToString
 @Entity
 @Table(name = "specialties")
-public class SpecialtyJpaEntity implements Serializable {
+public class SpecialtyEntity implements Serializable {
 
   private static final long serialVersionUID = -8342815897153870981L;
 

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SpecialtyMapper {
 
-  public Specialty map(SpecialtyJpaEntity specialty) {
+  public Specialty map(SpecialtyEntity specialty) {
     return Specialty.builder().id(specialty.getId()).name(specialty.getName()).build();
   }
 }
