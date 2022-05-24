@@ -26,7 +26,7 @@ import lombok.ToString;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 @Entity
-@Table(name = "specialties")
+@Table(name = "vets")
 public class VetEntity implements Serializable {
 
   private static final long serialVersionUID = 5135272432765183283L;
