@@ -1,0 +1,503 @@
+openapi: 3.0.1
+
+
+info:
+  title: petclinic-vets-service
+  description: API para la gestion de veterinarios y especialidades en la aplicacion Pet Clinic
+  version: 1.0.0
+
+
+servers:
+  - url: http://localhost:8101
+    description: Local
+
+
+tags:
+  - name: specialties
+    description: Operaciones sobre las especialidades
+  - name: vets
+    description: Operaciones sobre los veterinarios
+
+paths:
+  /v1/specialties:
+    post:
+      tags:
+        - specialties
+      summary: Crear una nueva especialidad
+      operationId: createSpecialtyV1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSpecialtyRequestResourceV1'
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateSpecialtyResponseResource'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+    get:
+      tags:
+        - specialties
+      summary: Buscar especialidades
+      operationId: searchSpecialtyV1
+      parameters: 
+        - $ref: "#/components/parameters/PaginationPage"
+        - $ref: "#/components/parameters/PaginationSize"
+        - name: name
+          in: query
+          description: 'Parte del nombre de las especialidades a buscar'
+          schema:
+            type: string
+          example: 'Dog'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchSpecialtyResponseResourceV1'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+
+  /v1/specialties/{specialtyId}:
+    put:
+      tags:
+        - specialties
+      summary: Edita una especialidad
+      operationId: updateSpecialtyV1
+      parameters:
+        - $ref: "#/components/parameters/SpecialtyId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSpecialtyRequestResourceV1'
+      responses:
+        204:
+          $ref: '#/components/responses/NoContent'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+    get:
+      tags:
+        - specialties
+      summary: Busca una especialidad
+      operationId: findSpecialtyV1
+      parameters:
+        - $ref: "#/components/parameters/SpecialtyId"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FindSpecialtyResponseResourceV1'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+    delete:
+      tags:
+        - specialties
+      summary: Borra una especialidad
+      operationId: deleteSpecialtyV1
+      parameters:
+        - $ref: "#/components/parameters/SpecialtyId"
+      responses:
+        204:
+          $ref: '#/components/responses/NoContent'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+
+  /v1/vets:
+    post:
+      tags:
+        - vets
+      summary: Crear un nuevo veterinario
+      operationId: createVetV1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateVetRequestResourceV1'
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateVetResponseResourceV1'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+    get:
+      tags:
+        - vets
+      summary: Busca veterinarios
+      operationId: searchVetV1
+      parameters: 
+        - $ref: "#/components/parameters/PaginationPage"
+        - $ref: "#/components/parameters/PaginationSize"
+        - name: q
+          in: query
+          description: 'Parte del nombre o del apellido de los veterinarios a buscar'
+          schema:
+            type: string
+          example: 'Pet'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchVetResponseResourceV1'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  
+  /v1/vets/{vetId}:
+    put:
+      tags:
+        - vets
+      summary: Edita un veterinario
+      operationId: updateVetV1
+      parameters:
+        - $ref: "#/components/parameters/VetId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateVetRequestResourceV1'
+      responses:
+        204:
+          $ref: '#/components/responses/NoContent'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+    get:
+      tags:
+        - vets
+      summary: Busca un veterinario
+      operationId: findVetV1
+      parameters:
+        - $ref: "#/components/parameters/VetId"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FindVetResponseResourceV1'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+    delete:
+      tags:
+        - vets
+      summary: Borra un veterinario
+      operationId: deleteVetV1
+      parameters:
+        - $ref: "#/components/parameters/VetId"
+      responses:
+        204:
+          $ref: '#/components/responses/NoContent'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+    
+  /v1/vets/{vetId}/specialties/{specialtyId}:
+    put:
+      tags:
+        - vets
+      summary: Añade una especialidad a un veterinario
+      operationId: addSpecialtyToVetV1
+      parameters:
+        - $ref: "#/components/parameters/VetId"
+        - $ref: "#/components/parameters/SpecialtyId"
+      responses:
+        204:
+          $ref: '#/components/responses/NoContent'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+    delete:
+      tags:
+        - vets
+      summary: Borra una especialidad a un veterinario
+      operationId: removeSpecialtyToVetV1
+      parameters:
+        - $ref: "#/components/parameters/VetId"
+        - $ref: "#/components/parameters/SpecialtyId"
+      responses:
+        204:
+          $ref: '#/components/responses/NoContent'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+
+
+components:
+  parameters:
+    SpecialtyId:
+      name: specialtyId
+      in: path
+      description: ID de la especialidad
+      required: true
+      schema:
+        type: string
+      example: '42b71a2a-3f79-40b3-a365-3f362656c9c3'
+    VetId:
+      name: vetId
+      in: path
+      description: ID del veterinario
+      required: true
+      schema:
+        type: string
+      example: '42b71a2a-3f79-40b3-a365-3f362656c9c3'
+    PaginationPage:
+      name: page
+      in: query
+      description: 'Numero de pagina (minimo 1)'
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        default: 1
+      example: '2'
+    PaginationSize:
+      name: size
+      in: query
+      description: 'Numero de elementos por pagina (minimo 1, maximo 99)'
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 99
+        default: 10
+      example: '5'
+
+
+  schemas:
+    SpecialtyName:
+      type: object
+      required: 
+        - name
+      properties:
+        name:
+          type: string
+          description: 'Nombre de la especialidad'
+          minLength: 3
+          maxLength: 25
+          example: 'Dogs'
+    SpecialtyId:
+      type: object
+      required: 
+        - id
+      properties:
+        id:
+          type: string
+          description: 'ID de la especialidad'
+          example: '42b71a2a-3f79-40b3-a365-3f362656c9c3'
+    CreateSpecialtyRequestResourceV1:
+      allOf:
+        - $ref: '#/components/schemas/SpecialtyName'
+    CreateSpecialtyResponseResource:
+      allOf:
+        - $ref: '#/components/schemas/SpecialtyId'
+    UpdateSpecialtyRequestResourceV1:
+      allOf:
+        - $ref: '#/components/schemas/SpecialtyName'
+    FindSpecialtyResponseResourceV1:
+      allOf:
+        - $ref: '#/components/schemas/SpecialtyId'
+        - $ref: '#/components/schemas/SpecialtyName'
+    SearchElementSpecialtyResponseResourceV1:
+      allOf:
+        - $ref: '#/components/schemas/SpecialtyId'
+        - $ref: '#/components/schemas/SpecialtyName'
+    SearchSpecialtyResponseResourceV1:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponseResource'
+        specialties:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchElementSpecialtyResponseResourceV1'
+    
+    VetId:
+      type: object
+      required: 
+        - id
+      properties:
+        id:
+          type: string
+          description: 'ID del veterinario'
+          example: '42b71a2a-3f79-40b3-a365-3f362656c9c3'
+    VetFirstName:
+      type: object
+      required: 
+        - firstName
+      properties:
+        firstName:
+          type: string
+          description: 'Nombre del veterinario'
+          minLength: 3
+          maxLength: 25
+          example: 'Peter'
+    VetLastName:
+      type: object
+      required: 
+        - lastName
+      properties:
+        lastName:
+          type: string
+          description: 'Apellido del veterinario'
+          minLength: 3
+          maxLength: 25
+          example: 'Parker'
+    UpdateVetRequestResourceV1:
+      allOf:
+        - $ref: '#/components/schemas/VetFirstName'
+        - $ref: '#/components/schemas/VetLastName'
+    FindVetResponseResourceV1:
+      allOf:
+        - $ref: '#/components/schemas/VetId'
+        - $ref: '#/components/schemas/VetFirstName'
+        - $ref: '#/components/schemas/VetLastName'
+      type: object
+      properties:
+        specialties:
+          type: array
+          description: 'Listado de ID de las especialidades'
+          items:
+            type: string
+            example: '42b71a2a-3f79-40b3-a365-3f362656c9c3'
+    CreateVetRequestResourceV1:
+      allOf:
+        - $ref: '#/components/schemas/VetFirstName'
+        - $ref: '#/components/schemas/VetLastName'
+    CreateVetResponseResourceV1:
+      allOf:
+        - $ref: '#/components/schemas/VetId'
+    SearchElementVetResponseResourceV1:
+      allOf:
+        - $ref: '#/components/schemas/VetId'
+        - $ref: '#/components/schemas/VetFirstName'
+        - $ref: '#/components/schemas/VetLastName'
+    SearchVetResponseResourceV1:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationResponseResource'
+        vets:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchElementVetResponseResourceV1'
+    
+    PaginationResponseResource:
+      type: object
+      required: 
+        - totalPages
+        - totalElements
+        - numberOfElements
+        - hasNext
+        - hasPrevious
+      properties:
+        totalPages:
+          description: 'Numero total de paginas'
+          type: integer
+          format: int32
+          example: '1'
+        totalElements:
+          description: 'Numero total de elementos'
+          type: integer
+          format: int64
+          example: '2'
+        numberOfElements:
+          description: 'Numero de elementos devueltos'
+          type: integer
+          format: int32
+          example: '2'
+        hasNext:
+          description: 'Indica si hay una pagina anterior'
+          type: boolean
+          example: 'false'
+        hasPrevious:
+          description: 'Indica si hay una pagina siguiente'
+          type: boolean
+          example: 'false'
+    ErrorResponseResource:
+      type: object
+      required: 
+        - timestamp
+        - status
+        - error
+        - code
+      properties:
+        timestamp:
+          description: 'Hora a la que sucedio el error (UTC)'
+          type: string
+          example: '2022-05-24T19:05:46.463707400Z'
+        status:
+          description: 'Codigo estado http'
+          type: integer
+          format: int32
+          example: '404'
+        error:
+          description: 'Descripcion estado http'
+          type: string
+          example: 'Not Found'
+        code:
+          description: 'Codigo de error de negocio'
+          type: string
+          example: 'PETCLINIC-SPECIALTY_NOT_FOUND'
+        traceId:
+          description: 'Identificador de la llamada'
+          type: string
+          example: 'TBD'
+
+
+  responses:
+    NoContent:
+      description: No Content
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponseResource'
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponseResource'
+    InternalServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponseResource'
