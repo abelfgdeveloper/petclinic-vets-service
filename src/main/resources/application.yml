@@ -14,10 +14,7 @@ spring:
   jpa:
     open-in-view: true
     hibernate:
-      ddl-auto: update
-
-  flyway:
-    enabled: false
+      ddl-auto: validate
 
 logging:
   level:

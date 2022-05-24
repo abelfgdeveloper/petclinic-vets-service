@@ -1,4 +1,4 @@
-CREATE TABLE public.specialties (
+CREATE TABLE specialties (
   id varchar(40) NOT NULL,
   name varchar(25) NULL,
   CONSTRAINT specialties_pk PRIMARY KEY (id)
